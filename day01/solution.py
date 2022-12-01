@@ -5,23 +5,15 @@ class Solution:
 
     def __init__(self):
         input_file = open("input.txt", 'r').read()
-        self.input_numbers = input_file.split('\n')
+        self.calorie_count = [map(int, r.split('\n')) for r in input_file.split('\n\n')]
 
-    def run(self) -> list[int]:
-        sums = []
-        sum = 0
-        for i in self.input_numbers:
-            if i == '':
-                sums.append(sum)
-                sum = 0
-            else:
-                sum += int(i)
-        return sums
+    def calculate_calories(self) -> list[int]:
+        return [sum(cals) for cals in self.calorie_count]
 
 
 if __name__ == '__main__':
     sol = Solution()
-    if getenv('part') == 'part1':
-        print(max(sol.run()))
-    else:
-        print(sum(sorted(sol.run())[-3:]))
+    match getenv('part'):
+        case 'part1': print(max(sol.calculate_calories()))
+        case 'part2': print(sum(sorted(sol.calculate_calories())[-3:]))
+        case _:       exit('Invalid name of environment variable \'part\'')
