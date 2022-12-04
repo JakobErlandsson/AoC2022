@@ -7,16 +7,14 @@ class Solution:
         input_file = open('input.txt', 'r').read()
         input_file = [a.split(',') for a in input_file.split('\n')]
         self.pairs = []
-        for p in input_file:
-            (elf1, elf2) = p
-            elf1 = list(map(int, elf1.split('-')))
-            elf2 = list(map(int, elf2.split('-')))
+        for (elf1, elf2) in input_file:
+            elf1 = [int(a) for a in elf1.split('-')]
+            elf2 = [int(a) for a in elf2.split('-')]
             self.pairs.append((elf1, elf2))
 
     def calc(self, part: str) -> int:
         num = 0
-        for p in self.pairs:
-            (elf1, elf2) = p
+        for (elf1, elf2) in self.pairs:
             ranges = (range(elf1[0], elf1[1]+1), range(elf2[0], elf2[1]+1))
             inter = set(ranges[0]).intersection(ranges[1])
             if part == 'part1' and inter.__len__() in map(len, ranges):
