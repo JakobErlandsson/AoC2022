@@ -25,10 +25,10 @@ class Solution:
 
             if part == 'part1':
                 to_stack.extend(reversed(from_stack[-n_crates:]))
+                del from_stack[-n_crates:]
             if part == 'part2':
                 to_stack.extend(from_stack[-n_crates:])
-                
-            del from_stack[-n_crates:]
+                del from_stack[-n_crates:]
 
 
 if __name__ == '__main__':
