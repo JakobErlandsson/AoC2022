@@ -14,7 +14,15 @@ class Solution:
 
 if __name__ == '__main__':
     sol = Solution()
-    match getenv('part'):
-        case 'part1': print(np.max(sol.calculate_calories()))
-        case 'part2': print(np.sort(sol.calculate_calories())[-3:].sum())
-        case _:       exit('Invalid name of environment variable \'part\'')
+    if getenv('part') == 'part1':
+        print(np.max(sol.calculate_calories()))
+    elif getenv('part') == 'part2':
+        sum = 0
+        result = sol.calculate_calories()
+        for _ in range(3):
+            highest = result.max()
+            result = np.setdiff1d(result, highest)
+            sum += highest
+        print(sum)
+    else:
+        exit('Invalid name of environment variable \'part\'')
