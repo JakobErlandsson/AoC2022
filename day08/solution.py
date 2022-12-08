@@ -1,4 +1,3 @@
-import itertools
 from os import getenv
 from math import prod
 
