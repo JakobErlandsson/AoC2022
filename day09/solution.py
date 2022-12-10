@@ -28,14 +28,8 @@ class Snake:
             for t in self.tail:
                 if not is_attached(t, knot_ahead):
                     to_move = Direction(0, 0)
-                    if knot_ahead.x < t.x:
-                        to_move.x = -1
-                    if knot_ahead.x > t.x:
-                        to_move.x = 1
-                    if knot_ahead.y < t.y:
-                        to_move.y = -1
-                    if knot_ahead.y > t.y:
-                        to_move.y = 1
+                    to_move.x = max(-1, min(1, knot_ahead.x - t.x))
+                    to_move.y = max(-1, min(1, knot_ahead.y - t.y))
                     t.add(to_move)
                 knot_ahead = t
             self.tail_positions.add((self.tail[-1].x, self.tail[-1].y))
