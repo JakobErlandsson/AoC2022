@@ -1,5 +1,4 @@
 from os import getenv
-from math import prod
 
 
 class Monkey:
@@ -42,7 +41,9 @@ class Solution:
 
             self.monkeys[int(r[0].split(' ')[-1].replace(':', ''))] = Monkey(starting_items, operation, div,
                                                                              {'true': true, 'false': false})
-        self.common_denominator = prod([m.div for m in self.monkeys.values()])
+        self.common_denominator = 1
+        for m in self.monkeys.values():
+            self.common_denominator *= m.div
 
     def do_round(self):
         for i in range(self.monkeys.__len__()):
@@ -76,11 +77,3 @@ if __name__ == '__main__':
     insts.remove(max(insts))
     sum *= max(insts)
     print(sum)
-
-    match getenv('part'):
-        case 'part1':
-            print()
-        case 'part2':
-            print()
-        case _:
-            exit('Invalid name of environment variable \'part\'')

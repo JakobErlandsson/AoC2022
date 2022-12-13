@@ -1,3 +1,3 @@
-FROM python:3.10
+FROM pypy:3.9
 COPY solution.py ./ input.txt ./
-CMD python3 ./solution.py
+CMD pypy3 ./solution.py
